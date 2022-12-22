@@ -46,13 +46,15 @@ async function run() {
       res.send(result);
     });
 
-    app.get('/', (req, res) => {
-      res.send("Blog server running")
-    })
+
   } finally {
   }
 }
 run().catch(console.dir);
+
+app.get('/', (req, res) => {
+  res.send("Blog server running")
+})
 
 app.listen(port, () => {
   console.log(`app listening on ${port}`);
