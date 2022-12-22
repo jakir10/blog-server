@@ -22,23 +22,23 @@ async function run() {
     await client.connect();
     console.log("db-connect");
 
-    // const productCollection = client.db("blog_tech").collection("product");
-    const BlogCollection = client.db("blog_tech").collection("blog");
+    const productCollection = client.db('blog_tech').collection('product');
+    const blogCollection = client.db('blog_tech').collection('blog');
 
     app.post("/blog", async (req, res) => {
       const data = req.body;
       console.log(data);
-      const product = await BlogCollection.insertOne(data);
+      const product = await blogCollection.insertOne(data);
       res.send(product);
     });
     app.get("/blog", async (req, res) => {
-      const result = await BlogCollection.find({}).toArray();
+      const result = await blogCollection.find({}).toArray();
       res.send(result);
     });
     app.delete("/blog/:id", async (req, res) => {
       const id = req.params.id;
       console.log(id);
-      const result = await BlogCollection.deleteOne({ _id: ObjectId(id) });
+      const result = await blogCollection.deleteOne({ _id: ObjectId(id) });
       res.send(result);
     });
     app.patch("/blog/:id", async (req, res) => {
@@ -47,7 +47,7 @@ async function run() {
       const updatedDoc = {
         $set: req.body,
       };
-      const result = await BlogCollection.updateOne(filter, updatedDoc);
+      const result = await blogCollection.updateOne(filter, updatedDoc);
       res.send(result);
     });
 
