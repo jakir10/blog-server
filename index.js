@@ -18,30 +18,41 @@ const client = new MongoClient(uri, {
 
 const run = async () => {
   try {
-    const db = client.db("moontech");
-    const productCollection = db.collection("product");
+    const db = client.db("blog_tech");
+    const blogCollection = db.collection("blog");
 
-    app.get("/products", async (req, res) => {
-      const cursor = productCollection.find({});
-      const product = await cursor.toArray();
+    app.get("/blog", async (req, res) => {
+      const cursor = blogCollection.find({});
+      const blog = await cursor.toArray();
 
-      res.send({ status: true, data: product });
+      res.send({ status: true, data: blog });
     });
 
-    app.post("/product", async (req, res) => {
-      const product = req.body;
+    app.post("/blog", async (req, res) => {
+      const data = req.body;
 
-      const result = await productCollection.insertOne(product);
+      const result = await blogCollection.insertOne(data);
 
       res.send(result);
     });
 
-    app.delete("/product/:id", async (req, res) => {
+    app.delete("/blog/:id", async (req, res) => {
       const id = req.params.id;
 
-      const result = await productCollection.deleteOne({ _id: ObjectId(id) });
+      const result = await blogCollection.deleteOne({ _id: ObjectId(id) });
       res.send(result);
     });
+
+    app.patch("/blog/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: ObjectId(id) };
+      const updatedDoc = {
+        $set: req.body,
+      };
+      const result = await BlogCollection.updateOne(filter, updatedDoc);
+      res.send(result);
+    });
+
   } finally {
   }
 };
@@ -49,7 +60,7 @@ const run = async () => {
 run().catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Blog Server Run");
 });
 
 app.listen(port, () => {
