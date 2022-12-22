@@ -1178,10 +1178,10 @@
     "@types/whatwg-url" "^8.2.1"
     "whatwg-url" "^11.0.0"
 
-"mongodb@^4.12.0":
-  "integrity" "sha512-ssWod7DqVE4faluZESdOqYhV1BI5CQA5c31sr+zxDLJDBX9EA5VJLo8RNSItPTwxExmuGn/T6MbETQWjywNehA=="
-  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.12.0.tgz"
-  "version" "4.12.0"
+"mongodb@^4.13.0":
+  "integrity" "sha512-+taZ/bV8d1pYuHL4U+gSwkhmDrwkWbH1l4aah4YpmpscMwgFBkufIKxgP/G7m87/NUuQzc2Z75ZTI7ZOyqZLbw=="
+  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.13.0.tgz"
+  "version" "4.13.0"
   dependencies:
     "bson" "^4.7.0"
     "mongodb-connection-string-url" "^2.5.4"
